@@ -281,7 +281,7 @@ section {
 
 @media (max-width: 991px) {
     .page-wrapper {
-    overflow: auto;
+    overflow: hidden;
     background: #e5e5e5;
     padding-bottom: 12vh;
 }
