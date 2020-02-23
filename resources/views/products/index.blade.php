@@ -65,7 +65,8 @@
                             <tbody>
                                 @foreach ($products as $product)
 
-                                <tr class="tr-shadow">
+                                <tr class="tr-shadow  @if($product->quantity <= 5 && $product->quantity > 0)  alert-warning
+                                    @elseif($product->quantity == 0)  alert-danger @endif">
 
                                 <td>{{$product->name}}</td>
                                     <td class="desc">
@@ -74,7 +75,7 @@
                                     <td>{{$product->category->name}}</td>
                                     <td>{{$product->type->name}}</td>
                                     <td>{{$product->price}}</td>
-                                    @if ($product->quantity <= 3)
+                                    @if ($product->quantity <= 5)
                                     <td>
                                         <span class="status--denied">{{$product->quantity}}</span>
                                     </td>
