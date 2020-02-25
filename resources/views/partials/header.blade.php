@@ -131,15 +131,15 @@
                         </li>
                         <li class="{{ (request()->is('products*')) ? 'active' : '' }}"> <!-- "*" makes every route that starts with products ative -->
                             <a href="{{url('/products')}}">
-                                <i class="fas fa-chart-bar"></i>Produktet</a>
+                                <i class="fas fa-shopping-cart"></i>Produktet</a>
                         </li>
                         <li>
                             <a href="table.html">
-                                <i class="fas fa-table"></i>Furnizuesit</a>
+                                <i class="fas fa-arrow-circle-right"></i>Furnizuesit</a>
                         </li>
-                        <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Bleresit</a>
+                        <li  class="{{ (request()->is('buyers*')) ? 'active' : '' }}">
+                            <a href="{{url('buyers')}}">
+                                <i class="fas fa-arrow-circle-left"></i>Bleresit</a>
                         </li>
                         <li>
                             <a href="calendar.html">
@@ -147,22 +147,7 @@
                         </li>
                         <li>
                             <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Përdoruesit</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
-                                    <a href="login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a href="register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="forget-pass.html">Forget Password</a>
-                                </li>
-                            </ul>
+                                <i class="fas fa-user"></i>Përdoruesit</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
