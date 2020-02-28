@@ -33,10 +33,13 @@
                                 </select>
                                 <div class="dropDownSelect2"></div>
                             </div>
-                            <button class="au-btn-filter">
-                                <i class="zmdi zmdi-filter-list"></i>filters</button>
-                        </div>
+
+                            </div>
                         <div class="table-data__tool-right">
+                        <a href="{{url('cart')}}"><button class="au-btn-filter">
+                                <i class="fas fa-shopping-cart"></i>
+                                Shporta @if(count((array) session('cart')) == 0)  @else <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span> @endif
+                            </button></a>
                         <a href="{{url('products/create')}}"> <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                                 <i class="zmdi zmdi-plus"></i>Shto Produkt</button></a>
                             <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
@@ -53,6 +56,7 @@
                         <table class="table table-data2">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>emri</th>
                                     <th>përshkrimi</th>
                                     <th>Kategoria</th>
@@ -67,6 +71,16 @@
 
                                 <tr class="tr-shadow  @if($product->quantity <= 5 && $product->quantity > 0)  alert-warning
                                     @elseif($product->quantity == 0)  alert-danger @endif">
+                                    @if ($product->quantity != 0)
+                                       <td>
+                                        <label class="au-checkbox">
+                                            <a href="{{ url('add-to-cart/'.$product->id) }}"><input type="checkbox">
+                                            <span class="au-checkmark"></span></a>
+                                        </label>
+                                    </td>
+                                    @else
+                                    <td></td>
+                                    @endif
 
                                 <td>{{$product->name}}</td>
                                     <td class="desc">

@@ -20,3 +20,12 @@ Route::get('/index', function () {
 });
 
 Route::resource('products', 'ProductsController');
+Route::resource('buyers', 'BuyersController');
+
+Route::get('cart','CartController@cart');
+Route::get('add-to-cart/{id}', 'CartController@addToCart');
+
+Route::patch('update-cart','CartController@updateCart');
+Route::delete('remove-from-cart','CartController@remove');
+
+Route::post('save-buyer-products','CartController@store');

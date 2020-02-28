@@ -23,7 +23,7 @@ class CreateSuppliersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('produt_supplier', function (Blueprint $table) {
+        Schema::create('product_supplier', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('supplier_id');
             $table->string('product_id');

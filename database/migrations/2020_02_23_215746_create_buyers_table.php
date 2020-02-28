@@ -22,12 +22,7 @@ class CreateBuyersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('buyer_product', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('buyer_id');
-            $table->unsignedBigInteger('product_id');
-            $table->timestamps();
-        });
+
     }
 
     /**
@@ -38,6 +33,6 @@ class CreateBuyersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('buyers');
-        Schema::dropIfExists('buyer_product');
+        Schema::dropIfExists('sales');
     }
 }

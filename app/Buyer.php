@@ -10,6 +10,6 @@ class Buyer extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class,'sales','product_id','buyer_id')->withPivot(['quantity','total_sum']);
     }
 }
