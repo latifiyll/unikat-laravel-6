@@ -145,6 +145,10 @@
                             <a href="calendar.html">
                                 <i class="fas fa-calendar-alt"></i>Kartela Analitike</a>
                         </li>
+                        <li class="{{ (request()->is('sales*')) ? 'active' : '' }}">
+                        <a href="{{url('sales')}}">
+                                <i class="fas fa-truck"></i>Shitjet</a>
+                        </li>
                         <li>
                             <a href="map.html">
                                 <i class="fas fa-user"></i>Përdoruesit</a>

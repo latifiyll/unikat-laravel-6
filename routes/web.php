@@ -29,3 +29,5 @@ Route::patch('update-cart','CartController@updateCart');
 Route::delete('remove-from-cart','CartController@remove');
 
 Route::post('save-buyer-products','CartController@store');
+
+Route::get('sales','SalesController@index');

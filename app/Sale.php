@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Sale extends Model
 {
@@ -10,11 +11,12 @@ class Sale extends Model
 
     public function buyer()
     {
-        return $this->hasMany(Buyer::class);
+        return $this->belongsTo(Buyer::class);
     }
 
     public function product()
     {
         return $this->hasMany(Product::class);
     }
+
 }
