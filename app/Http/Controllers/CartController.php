@@ -46,7 +46,7 @@ class CartController extends Controller
 
                 session()->put('cart', $cart);
 
-                return redirect()->back()->with('success', 'Product added to cart successfully!');
+                return redirect()->back();
             }
 
             // if cart not empty then check if this product exist then increment quantity
@@ -56,7 +56,7 @@ class CartController extends Controller
 
                 session()->put('cart', $cart);
 
-                return redirect()->back()->with('success', 'Product added to cart successfully!');
+                return redirect()->back();
 
             }
 
@@ -72,7 +72,7 @@ class CartController extends Controller
 
             session()->put('cart', $cart);
 
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect()->back();
         }
     }
     public function updateCart(Request $request)
@@ -83,13 +83,12 @@ class CartController extends Controller
             $cart = session()->get('cart');
             $product = Product::where('id', $cart[$request->id])->first();
             if($request->quantity > $product->quantity){
-                // return redirect('/cart')->withErrors('Nuk ka sasi te mjaftueshme per këtë produkt: '.$product->name);
-                session()->flash('error','Nuk ka sasi te mjaftueshme per këtë produkt: '.$product->name);
+                session()->flash('error','Nuk ka sasi te mjaftueshme per këtë produkt: '.$product->name. '. Sasia momentale është '.$product->quantity);
             }else {
 
                 $cart[$request->id]["quantity"] = $request->quantity;
                 session()->put('cart',$cart);
-                session()->flash('success','Cart updated successfully');
+                session()->flash('success','Sasia u ndryshua me sukses.');
             }
 
         }
@@ -103,7 +102,7 @@ class CartController extends Controller
                 unset($cart[$request->id]);
                 session()->put('cart',$cart);
             }
-            session()->flash('success', 'product deleted successfully');
+            session()->flash('success', 'Produkti u largua me sukses.');
         }
     }
 
