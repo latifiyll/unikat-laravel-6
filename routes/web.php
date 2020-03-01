@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\SalesController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -31,3 +33,4 @@ Route::delete('remove-from-cart','CartController@remove');
 Route::post('save-buyer-products','CartController@store');
 
 Route::get('sales','SalesController@index');
+Route::get('sales/{id}','SalesController@show');

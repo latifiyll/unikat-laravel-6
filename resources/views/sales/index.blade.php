@@ -61,18 +61,9 @@
                                     <td>
                                         <div class="table-data-feature">
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Shiko më shumë">
-                                            <a href="{{url("/sales/$sale->id")}}"><i class="zmdi zmdi-mail-send"></i></a>
+                                            <a href="{{url("/sales/$sale->buyer_id")}}"><i class="zmdi zmdi-mail-send"></i></a>
                                             </button>
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Përditëso">
-                                                <a href="{{url("/sales/$sale->id/edit")}}"><i class="zmdi zmdi-edit"></i></a>
-                                            </button>
-                                            <form action="{{url("/sales/$sale->id")}}" method="POST">
-                                                @csrf
-                                                @method("DELETE")
-                                                <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="Fshij">
-                                                    <i class="zmdi zmdi-delete"></i>
-                                                </button>
-                                            </form>
+
                                         </div>
                                     </td>
                                 </tr>
