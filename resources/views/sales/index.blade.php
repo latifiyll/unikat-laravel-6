@@ -7,6 +7,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- DATA TABLE -->
+                    @if ($sales->count() == 0)
+                    <div class="alert alert-danger" role="alert">
+                        Nuk keni bërë ende shitje.<br>
+                         <br>
+                    <a href="{{url("products")}}"><button class="btn btn-success">Produktet</button></a>
+                    @else
                     <h3 class="title-5 m-b-35">shitjet</h3>
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
@@ -72,6 +78,7 @@
                             </tbody>
                         </table>
                     </div>
+                    @endif
                     <!-- END DATA TABLE -->
                 </div>
             </div>
