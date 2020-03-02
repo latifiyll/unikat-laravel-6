@@ -14,7 +14,7 @@
 use App\Http\Controllers\SalesController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/index', function () {

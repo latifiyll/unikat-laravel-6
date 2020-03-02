@@ -22,4 +22,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Buyer::class,'sales','buyer_id','product_id');
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }
