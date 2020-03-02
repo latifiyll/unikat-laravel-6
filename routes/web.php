@@ -34,3 +34,10 @@ Route::post('save-buyer-products','CartController@store');
 
 Route::get('sales','SalesController@index');
 Route::get('sales/{id}','SalesController@show');
+
+Route::put('settings/categories/{id}','CategoriesController@update');
+Route::resource('settings/categories','CategoriesController');
+
+Route::put('settings/types/{id}','TypesController@update');
+Route::resource('settings/types','TypesController');
+

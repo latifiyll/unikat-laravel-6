@@ -192,6 +192,18 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="has-sub {{ (request()->is('settings*')) ? 'active' : '' }}">
+                            <a class="js-arrow " href="#">
+                                <i class="fas fa-cogs"></i>Konfigurime</a>
+                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                <li class="{{ (request()->is('settings/categories*')) ? 'active' : '' }}">
+                                    <a href="{{url('settings/categories')}}"><i class="fas fa-list-ul"></i> Kategoritë</a>
+                                </li>
+                                <li class="{{ (request()->is('settings/types*')) ? 'active' : '' }}">
+                                    <a href="{{url('settings/types')}}"><i class="fas fa-list-ul"></i>Tipet</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>
