@@ -14,7 +14,7 @@ class BuyersController extends Controller
      */
     public function index()
     {
-        $buyers = Buyer::all();
+        $buyers = Buyer::orderBy('id','DESC')->get();
 
         return view('buyers.index', compact('buyers'));
     }
@@ -26,7 +26,7 @@ class BuyersController extends Controller
      */
     public function create()
     {
-        //
+        return view('buyers.create');
     }
 
     /**
@@ -37,7 +37,13 @@ class BuyersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Buyer::create(
+            array_merge(
+                $request->except('_token')
+            )
+            );
+
+            return redirect('buyers')->with('success','Bleresi u shtua me sukses');
     }
 
     /**
@@ -48,7 +54,9 @@ class BuyersController extends Controller
      */
     public function show($id)
     {
-        //
+        $buyer = Buyer::where('id',$id)->first();
+
+        return view('buyers.show',compact('buyer'));
     }
 
     /**
@@ -59,7 +67,9 @@ class BuyersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $buyer = Buyer::where('id',$id)->first();
+
+        return view('buyers.edit',compact('buyer'));
     }
 
     /**
@@ -71,7 +81,14 @@ class BuyersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $buyer = Buyer::where('id',$id)->first();
+
+        $buyer->update(
+            array_merge(
+                $request->except('_token','_method')
+            )
+            );
+            return redirect("buyers/".$buyer->id."/edit")->with('success','Bleresi u editua me sukses!');
     }
 
     /**
@@ -82,6 +99,10 @@ class BuyersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $buyer = Buyer::where('id',$id)->first();
+
+        $buyer->delete();
+
+        return redirect()->back();
     }
 }

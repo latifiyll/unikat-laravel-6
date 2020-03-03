@@ -4,6 +4,11 @@
 <div class="main-content">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{session('success')}}
+                </div>
+            @endif
             @if($buyers->count() == 0)
             <div class="alert alert-danger" role="alert">
                 Nuk keni Bleres të regjistruara.<br>
@@ -14,7 +19,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- DATA TABLE -->
-                    <h3 class="title-5 m-b-35">produktet</h3>
+                    <h3 class="title-5 m-b-35">Bleresit</h3>
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
                             <div class="rs-select2--light rs-select2--md">
@@ -38,7 +43,7 @@
                         </div>
                         <div class="table-data__tool-right">
                         <a href="{{url('buyers/create')}}"> <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                <i class="zmdi zmdi-plus"></i>Shto Produkt</button></a>
+                                <i class="zmdi zmdi-plus"></i>Shto Bleres</button></a>
                             <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                 <select class="js-select2" name="type">
                                     <option selected="selected">Export</option>
@@ -53,37 +58,25 @@
                         <table class="table table-data2">
                             <thead>
                                 <tr>
-                                    <th>emri</th>
-                                    <th>përshkrimi</th>
-                                    <th>Kategoria</th>
-                                    <th>Tipi</th>
-                                    <th>Cmimi</th>
-                                    <th>Sasia në stok</th>
+                                    <th>Emri</th>
+                                    <th>Tel/Mob</th>
+                                    <th>Adresa</th>
+                                    <th>Qyteti</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($buyers as $buyer)
 
-                                <tr class="tr-shadow  @if($buyer->quantity <= 5 && $buyer->quantity > 0)  alert-warning
-                                    @elseif($buyer->quantity == 0)  alert-danger @endif">
+                                <tr class="tr-shadow">
 
-                                <td>{{$buyer->name}}</td>
+                                <td>{{$buyer->full_name}}</td>
                                     <td class="desc">
-                                        {{$buyer->description}}
+                                        {{$buyer->phone}}
                                     </td>
-                                    <td>{{$buyer->category->name}}</td>
-                                    <td>{{$buyer->type->name}}</td>
-                                    <td>{{$buyer->price}}</td>
-                                    @if ($buyer->quantity <= 5)
-                                    <td>
-                                        <span class="status--denied">{{$buyer->quantity}}</span>
-                                    </td>
-                                    @else
-                                        <td>
-                                            <span class="status--process">{{$buyer->quantity}}</span>
-                                        </td>
-                                    @endif
+                                    <td>{{$buyer->address}}</td>
+                                    <td>{{$buyer->city}}</td>
+
                                     <td>
                                         <div class="table-data-feature">
                                             <button class="item" data-toggle="tooltip" data-placement="top" title="Shiko më shumë">
