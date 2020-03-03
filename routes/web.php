@@ -23,6 +23,7 @@ Route::get('/index', function () {
 
 Route::resource('products', 'ProductsController');
 Route::resource('buyers', 'BuyersController');
+Route::resource('suppliers', 'SuppliersController');
 
 Route::get('cart','CartController@cart');
 Route::get('add-to-cart/{id}', 'CartController@addToCart');

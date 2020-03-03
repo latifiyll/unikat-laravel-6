@@ -4,6 +4,11 @@
 <div class="main-content">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
             @if($products->count() == 0)
             <div class="alert alert-danger" role="alert">
                 Nuk keni produkte të regjistruara.<br>
@@ -15,16 +20,15 @@
                 <div class="col-md-12">
                     <!-- DATA TABLE -->
                     <h3 class="title-5 m-b-35">produktet</h3>
+                    <form class="form-header" action="" method="POST">
+                        <input class="au-input au-input--xl" type="text" name="search" placeholder="Kërko produkte" />
+                        <button class="au-btn--submit" type="submit">
+                            <i class="zmdi zmdi-search"></i>
+                        </button>
+                    </form>
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
-                            <div class="rs-select2--light rs-select2--md">
-                                <select class="js-select2" name="property">
-                                    <option selected="selected">All Properties</option>
-                                    <option value="">Option 1</option>
-                                    <option value="">Option 2</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
+
                             <div class="rs-select2--light rs-select2--sm">
                                 <select class="js-select2" name="time">
                                     <option selected="selected">Today</option>
@@ -36,10 +40,12 @@
 
                             </div>
                         <div class="table-data__tool-right">
-                        <a href="{{url('cart')}}"><button class="au-btn-filter">
-                                <i class="fas fa-shopping-cart"></i>
-                                Shporta @if(count((array) session('cart')) == 0)  @else <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span> @endif
-                            </button></a>
+                            <div class="rs-select2--light rs-select2--md">
+                                <a href="{{url('cart')}}"><button class="au-btn-filter">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Shporta @if(count((array) session('cart')) == 0)  @else <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span> @endif
+                                    </button></a>
+                            </div>
                         <a href="{{url('products/create')}}"> <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                                 <i class="zmdi zmdi-plus"></i>Shto Produkt</button></a>
                             <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">

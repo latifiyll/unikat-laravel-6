@@ -141,7 +141,7 @@ class CartController extends Controller
 
         }
         session()->flush();
-        return redirect("/products");
+        return redirect("/products")->with('success','Porosia është bërë me sukses !');
 
     }
 }
