@@ -11,6 +11,7 @@ class CartController extends Controller
 {
     public function cart()
     {
+
         $buyers = Buyer::all();
         return view('cart.index', compact('buyers'));
 

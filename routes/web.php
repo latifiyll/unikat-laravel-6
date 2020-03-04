@@ -13,13 +13,10 @@
 
 use App\Http\Controllers\SalesController;
 
-Route::get('/', function () {
-    return view('index');
-});
 
-Route::get('/index', function () {
-    return view('index');
-});
+
+Route::get('/','ChartsController@getCharts');
+// Route::get('/index','ChartsController@getBuyersBySum');
 
 Route::resource('products', 'ProductsController');
 Route::resource('buyers', 'BuyersController');
