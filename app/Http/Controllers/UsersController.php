@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\User;
 use Illuminate\Http\Request;
 
-class CategoriesController extends Controller
+class UsersController extends Controller
 {
     public function __construct()
     {
@@ -18,9 +18,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $users = User::all();
 
-        return view('settings.categories.index',compact('categories'));
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -30,7 +30,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('settings.categories.create_edit');
+        //
     }
 
     /**
@@ -41,13 +41,7 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        Category::create(
-            array_merge(
-                $request->except('_token')
-            )
-            );
-
-            return redirect("/settings/categories")->with('message','Kategoria u shtua me sukses!');
+        //
     }
 
     /**
@@ -69,9 +63,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::where('id',$id)->first();
-
-        return view('settings.categories.create_edit',compact('category'));
+        //
     }
 
     /**
@@ -83,14 +75,7 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::where('id',$request->id)->first();
-        // dd($category);
-        $category->update(
-            array_merge(
-                $request->except('_token','_method'),
-            )
-            );
-        return redirect("/settings/categories")->with('message','Kategoria u perditsua me sukses!');
+        //
     }
 
     /**
@@ -101,9 +86,6 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::where('id',$id)->first();
-        $category->delete();
-
-        return redirect()->back();
+        //
     }
 }

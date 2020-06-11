@@ -119,7 +119,7 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="{{url('images/icon/logo.png')}}" alt="Cool Admin" />
+                    <img src="{{url('images/icon/complogo.png')}}" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
@@ -152,10 +152,6 @@
                         <li class="{{ (request()->is('users*')) ? 'active' : '' }}">
                             <a href="{{url('users')}}">
                                 <i class="fas fa-user"></i>Përdoruesit</a>
-                        </li>
-                        <li class="{{ (request()->is('charts*')) ? 'active' : '' }}">
-                        <a class="js-arrow" href="{{url('charts')}}">
-                                <i class="fas fa-chart-bar"></i>Tabelat Grafike</a>
                         </li>
                         <li class="has-sub {{ (request()->is('settings*')) ? 'active' : '' }}">
                             <a class="js-arrow " href="#">
@@ -302,7 +298,7 @@
                                                     <img src="{{url('images/icon/avatar-01.jpg')}}" alt="John Doe" />
                                                 </div>
                                                 <div class="content">
-                                                    <a class="js-acc-btn" href="#">john doe</a>
+                                                <a class="js-acc-btn" href="#">{{Auth::user()->name}}</a>
                                                 </div>
                                                 <div class="account-dropdown js-dropdown">
                                                     <div class="info clearfix">
@@ -333,8 +329,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="account-dropdown__footer">
-                                                        <a href="#">
-                                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                                            <i class="zmdi zmdi-power"></i>{{__('Logout')}}</a>
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                            @csrf
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

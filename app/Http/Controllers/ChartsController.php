@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class ChartsController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getCharts()
     {
 

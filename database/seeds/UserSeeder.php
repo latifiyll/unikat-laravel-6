@@ -2,6 +2,7 @@
 
 use App\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -12,7 +13,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 3)->create()->each(function($user){
+        DB::table('users')->insert([
+            'name' => 'Unikat Admin',
+            'email' => 'admin@unikat.dev',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+        ]);
+        factory(User::class, 2)->create()->each(function($user){
             $user->save();
         });
     }

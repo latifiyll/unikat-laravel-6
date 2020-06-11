@@ -21,6 +21,7 @@ Route::get('/','ChartsController@getCharts');
 Route::resource('products', 'ProductsController');
 Route::resource('buyers', 'BuyersController');
 Route::resource('suppliers', 'SuppliersController');
+Route::resource('users','UsersController');
 
 Route::get('cart','CartController@cart');
 Route::get('add-to-cart/{id}', 'CartController@addToCart');
@@ -39,3 +40,9 @@ Route::resource('settings/categories','CategoriesController');
 Route::put('settings/types/{id}','TypesController@update');
 Route::resource('settings/types','TypesController');
 
+
+Auth::routes([
+    'register' => false
+]);
+
+Route::get('/home', 'HomeController@index')->name('home');

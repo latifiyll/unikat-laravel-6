@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $sales = Sale::orderBy('id', 'DESC')
