@@ -11,7 +11,6 @@
 |
 */
 
-use App\Http\Controllers\SalesController;
 
 
 
@@ -40,9 +39,16 @@ Route::resource('settings/categories','CategoriesController');
 Route::put('settings/types/{id}','TypesController@update');
 Route::resource('settings/types','TypesController');
 
+//General Settings
+Route::resource('/settings/general','GeneralSettingsController');
+
 
 Auth::routes([
     'register' => false
 ]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

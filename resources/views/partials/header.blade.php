@@ -163,6 +163,9 @@
                                 <li class="{{ (request()->is('settings/types*')) ? 'active' : '' }}">
                                     <a href="{{url('settings/types')}}"><i class="fas fa-list-ul"></i>Tipet</a>
                                 </li>
+                                <li class="{{ (request()->is('settings/general*')) ? 'active' : '' }}">
+                                    <a href="{{url('settings/general')}}"><i class="fas fa-list-ul"></i>Të dhëna Gjenerale</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
