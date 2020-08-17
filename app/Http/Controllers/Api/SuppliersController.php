@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Product as ResourcesProduct;
-use App\Product;
+use App\Http\Resources\Suppliers;
+use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ProductsController extends Controller
+class SuppliersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $suppliers = Supplier::all();
 
-        return ResourcesProduct::collection($products);
+        return Suppliers::collection($suppliers);
     }
 
     /**
@@ -41,22 +41,22 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'category_id' => 'required|int',
-            'type_id' => 'required|int',
-            'quantity' => 'required|int',
-            'price' => 'required|regex:/^\d*(\.\d{2})?$/',
+            'full_name' => 'required|string|max:255',
+            'company' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
         ]);
         if($validator->fails())
         {
             return response(['errors' => $validator->errors()->all()],422);
         }
-        $product = Product::create(array_merge(
+
+        $supplier = Supplier::create(array_merge(
             $request->except('_token')
         ));
 
-        return new ResourcesProduct($product);
+        return new Suppliers($supplier);
     }
 
     /**
@@ -67,13 +67,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
-        //
-=======
-        $product = Product::findOrFail($id);
+        $supplier = Supplier::find($id);
 
-        return new ResourcesProduct($product);
->>>>>>> 922b336345406b43fc53cdc9f68347544a08904d
+        return new Suppliers($supplier);
     }
 
     /**
@@ -96,28 +92,24 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
-        //
-=======
         $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'category_id' => 'required|int',
-            'type_id' => 'required|int',
-            'quantity' => 'required|int',
-            'price' => 'required|regex:/^\d*(\.\d{2})?$/',
+            'full_name' => 'required|string|max:255',
+            'company' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
         ]);
-        if ($validator->fails()) {
+        if($validator->fails())
+        {
             return response(['errors' => $validator->errors()->all()],422);
         }
-        $product = Product::where('id',$id)->first();
 
-        $product->update(array_merge(
+        $supplier = Supplier::find($id);
+        $supplier->update(array_merge(
             $request->except('_token','_method')
         ));
 
-        return new ResourcesProduct($product);
->>>>>>> 922b336345406b43fc53cdc9f68347544a08904d
+        return new Suppliers($supplier);
     }
 
     /**
@@ -128,14 +120,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
-        //
-=======
-        $product = Product::find($id);
+        $supplier = Supplier::find($id);
+        $supplier->delete();
 
-        $product->delete();
-
-        return new ResourcesProduct($product);
->>>>>>> 922b336345406b43fc53cdc9f68347544a08904d
+        return new Suppliers($supplier);
     }
 }
