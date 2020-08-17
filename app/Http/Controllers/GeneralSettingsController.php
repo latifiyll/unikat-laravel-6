@@ -16,7 +16,12 @@ class GeneralSettingsController extends Controller
     public function index()
     {
         $general = GeneralSetting::first();
-        return view('settings.general.index', compact('general'));
+        if($general)
+        {
+            return view('settings.general.index', compact('general'));
+        }else {
+            return view('settings.general.create');
+        }
     }
 
     /**
