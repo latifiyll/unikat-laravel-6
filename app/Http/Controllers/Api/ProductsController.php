@@ -67,13 +67,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-<<<<<<< HEAD
-        //
-=======
         $product = Product::findOrFail($id);
 
         return new ResourcesProduct($product);
->>>>>>> 922b336345406b43fc53cdc9f68347544a08904d
     }
 
     /**
@@ -96,9 +92,6 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
-        //
-=======
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
@@ -117,7 +110,6 @@ class ProductsController extends Controller
         ));
 
         return new ResourcesProduct($product);
->>>>>>> 922b336345406b43fc53cdc9f68347544a08904d
     }
 
     /**
@@ -128,14 +120,10 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
-        //
-=======
         $product = Product::find($id);
 
         $product->delete();
 
         return new ResourcesProduct($product);
->>>>>>> 922b336345406b43fc53cdc9f68347544a08904d
     }
 }
