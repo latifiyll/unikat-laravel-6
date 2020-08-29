@@ -16,7 +16,8 @@ class Type extends JsonResource
     {
         return [
             "id" => $this->id,
-            "name" => $this->name
+            "name" => $this->name,
+            "image" => $this->getFirstMediaUrl('images'),
         ];
     }
 }
