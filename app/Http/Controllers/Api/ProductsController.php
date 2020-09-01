@@ -53,8 +53,11 @@ class ProductsController extends Controller
             return response(['errors' => $validator->errors()->all()],422);
         }
         $product = Product::create(array_merge(
-            $request->except('_token')
+            $request->except('image','_token')
         ));
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $product->addMediaFromRequest('image')->toMediaCollection('product_image');
+        }
 
         return new ResourcesProduct($product);
     }

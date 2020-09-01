@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Category as ResourcesCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
 {
@@ -42,12 +43,19 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $category = Category::create(
-            array_merge(
-                $request->except('_token')
-            )
-        );
-        return response()->json(['message' => 'Kategoria u shtua me sukses!',[$category]],200);
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|string|max:255',
+        ]);
+        if($validator->fails()){
+            return response(['error'=> $validator->errors()->all()],422);
+        }
+        $category = new Category($request->except('image'));
+        $category->save();
+
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $category->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return new ResourcesCategory($category);
     }
 
     /**
@@ -60,7 +68,7 @@ class CategoriesController extends Controller
     {
         $category = Category::where('id',$id)->first();
 
-        return response()->json($category, 200);
+        return new ResourcesCategory($category);
     }
 
     /**
@@ -81,11 +89,16 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
-        $category = Category::findOrFail($request->id);
-        $category->update($request->all());
-        return response()->json(['message' => 'Kategoria u editua me sukses!',[$category]],200);
+        $category = Category::find($id);
+        $category->update(array_merge(
+            $request->except('_token','_method'),
+        ));
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $category->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return new ResourcesCategory($category);
     }
 
     /**

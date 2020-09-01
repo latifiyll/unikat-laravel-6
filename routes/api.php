@@ -27,7 +27,7 @@ Route::group(['prefix' => 'v1','middleware' => ['cors']], function () {
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
 
-    Route::resource('/categories','Api\CategoriesController');
+    Route::resource('categories','Api\CategoriesController');
     Route::resource('types','Api\TypesController');
     Route::resource('products','Api\ProductsController');
     Route::resource('suppliers','Api\SuppliersController');

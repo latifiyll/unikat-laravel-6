@@ -101,6 +101,9 @@ class TypesController extends Controller
                 $request->except('_token','_method')
             )
         );
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $type->addMediaFromRequest('image')->toMediaCollection('images');
+        }
         return new ResourcesType($type);
     }
 
